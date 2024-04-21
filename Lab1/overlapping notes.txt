@@ -1,0 +1,28 @@
+%% overlapping notes
+overlap_length = 500;
+x1 = [N1, zeros(1,length(N2)-overlap_length)];
+x2 = [N2, zeros(1,length(N3)-overlap_length)];
+x3 = [N3, zeros(1,length(N4)-overlap_length)];
+x4 = [N4, zeros(1,length(N5)-overlap_length)];
+x5 = [N5, zeros(1,length(N4)-overlap_length)];
+x6 = [N6, zeros(1,length(N6)-overlap_length)];
+
+N2o = [zeros(1,length(N1)-overlap_length),N2];
+N3o = [zeros(1,length(N2)-overlap_length),N3];
+N4o = [zeros(1,length(N4)-overlap_length),N5];
+N5o = [zeros(1,length(N5)-overlap_length),N4];
+N6o = [zeros(1,length(N6)-overlap_length),N6];
+
+P1 = x1 + N2o;
+P2 = x2 + N3o;
+P3 = x3 + N4o;
+P4 = x4 + N5o;
+P5 = x5 + N4o;
+P6 = x6 + N6o;
+
+%% Output
+% Combine notes
+%So = [N1 P1 N2 P2 N3 P3 N3 P3 N3 P4 N4 P5 N5 P4 N4 P6 N6];
+So = [ P1 P2  P3 P3 P4  P5  P4  P6 ];
+% Play sound
+sound(So,fs);
